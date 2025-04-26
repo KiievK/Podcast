@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+
+
+  <title>Podcast Vorstellung</title>
+  <style>
+    :root {
+      --bg-color: #121212;
+      --text-color: #ffffff;
+      --accent-color: #1DB954;
+      --card-color: #1e1e1e;
+      --card-hover: #2a2a2a;
+      --secondary-text: #b3b3b3;
+    }
+
+    body.light {
+      --bg-color: #ffffff;
+      --text-color: #121212;
+      --accent-color: #1DB954;
+      --card-color: #f1f1f1;
+      --card-hover: #e0e0e0;
+      --secondary-text: #555555;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      scroll-behavior: smooth;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    header {
+      background-color: var(--accent-color);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      animation: fadeInDown 1s ease;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex: 1;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    .navigation {
+      display: flex;
+      gap: 1.5rem;
+      margin-left: 2rem;
+    }
+
+
+
+
+
+    .theme-toggle {
+      background: var(--bg-color);
+      color: var(--text-color);
+      border: 2px solid var(--text-color);
+      border-radius: 30px;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    }
+
+    .theme-toggle:hover {
+      background-color: var(--card-hover);
+    }
+
+    main {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .section {
+      margin-top: 5rem;
+      text-align: center;
+      animation: fadeInUp 1s ease;
+      max-width: 800px;
+      width: 100%;
+      line-height: 160%;
+      font-family: "DM Sans", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: <weight>;
+      font-style: normal;
+
+    }
+
+    .podcast-cover {
+      width: 250px;
+      height: 250px;
+      background-color: #333;
+      border-radius: 16px;
+      margin: 2rem auto;
+      background-image: url('cf073d2a-c2e4-4a67-ad20-14170b9b76cb.jpeg');
+      background-size: cover;
+      background-position: center;
+      animation: fadeIn 1.5s ease;
+    }
+
+    .podcast-description {
+      text-align: center;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: var(--secondary-text);
+      animation: fadeInUp 1s ease;
+    }
+
+    .audio-player {
+      margin-top: 2rem;
+      animation: fadeIn 2s ease;
+      text-align: center;
+    }
+
+    .audio-player audio {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 8px;
+    }
+
+    .episode-list {
+      margin-top: 3rem;
+      width: 100%;
+      max-width: 600px;
+      animation: fadeInUp 2s ease;
+    }
+
+    .episode-list h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .episode {
+      background-color: var(--card-color);
+      padding: 1rem;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background-color 0.3s;
+      text-align: center;
+    }
+
+    .episode:hover {
+      background-color: var(--card-hover);
+    }
+
+    .episode-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .episode-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .episode-desc {
+      font-size: 0.95rem;
+      color: var(--secondary-text);
+      margin-top: 0.5rem;
+    }
+
+    .play-button {
+      background-color: var(--accent-color);
+      border: none;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .play-button:hover {
+      background-color: #1ed760;
+    }
+
+    .play-button svg {
+      fill: var(--bg-color);
+      width: 20px;
+      height: 20px;
+    }
+
+    .listen-buttons {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeIn 2s ease;
+    }
+
+    .listen-buttons a {
+      background-color: var(--accent-color);
+      color: var(--bg-color);
+      padding: 0.75rem 1.5rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .listen-buttons a:hover {
+      background-color: #1ed760;
+    }
+
+    .spotify-embed {
+      margin-top: 3rem;
+      animation: fadeInUp 2s ease;
+      text-align: center;
+    }
+
+    iframe.spotify-iframe {
+      border: none;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 600px;
+      height: 152px;
+    }
+
+    footer {
+      margin-top: 4rem;
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--secondary-text);
+      animation: fadeIn 2s ease;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.5rem;
+      }
+
+      .navigation {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 1rem;
+      }
+
+      .podcast-cover {
+        width: 180px;
+        height: 180px;
+      }
+
+      .podcast-description {
+        font-size: 1rem;
+        padding: 0 1rem;
+      }
+
+      .audio-player audio {
+        max-width: 90%;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    @keyframes fadeInUp {
+      from {opacity: 0; transform: translateY(30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes fadeInDown {
+      from {opacity: 0; transform: translateY(-30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav-container">
+    <h1>Dein Podcast-Name</h1>
+    
+    <!-- <nav class="navigation">
+      <a href="#neues">Neues</a>
+      <a href="#ueber-uns">Über Uns</a>
+      <a href="#podcast">Der Podcast</a>
+    </nav> -->
+
+    <button class="theme-toggle" onclick="toggleTheme()">🌗</button>
+  </div>
+</header>
+
+<main>
+  <div id="neues" class="section">
+    <h2>Neues</h2>
+    <p>Du willst wissen, was die Finanzwelt gerade auf den Kopf stellt? Bei uns bekommst du nicht nur die heißesten News, sondern auch unsere ungeschminkte Meinung zu allem, was aktuell wichtig ist. Ob die neuesten Wirtschaftstrends, überraschende Börsenschwankungen oder Gesetzesänderungen – wir bringen dir alles, was du wissen musst, um auch in turbulenten Zeiten einen klaren Kopf zu bewahren.
+      Franz und Kevin nehmen dich mit auf eine Reise durch die Finanzlandschaft, werfen einen scharfsinnigen Blick auf die Ereignisse und zerlegen die wichtigsten Themen so, dass du sie schnell verstehst – ohne dabei auf spannende Anekdoten und die ein oder andere freche Bemerkung zu verzichten.
+      Also, bleib dran! Wir sorgen dafür, dass du immer up-to-date bist – und zwar mit dem nötigen Biss, den man braucht, um in der Finanzwelt nicht nur mitzureden, sondern richtig mitzumischen.</p>
+  </div>
+
+  <div id="ueber-uns" class="section">
+    <h2>Über Uns</h2>
+    <p>Willkommen bei „Franz & Kevin – Dein Finanz-Podcast mit Pfiff“! Wir sind nicht hier, um dir die langweiligen Zahlen von gestern zu servieren. Nein, wir bringen dir die Finanzwelt mit einer guten Portion Humor, klaren Worten und einem Hauch von Frechheit näher. Franz ist der Zahlennerd, der immer weiß, wie man mit einer Excel-Tabelle mehr Schwung in dein Leben bringt. Kevin hingegen bringt den Pragmatismus – er erklärt dir, wie du das große Geld von heute in die Taschen von morgen verschiebst, ohne dabei den Spaß zu verlieren.
+      Wenn du glaubst, Finanzen sind ein trockenes Thema, dann warst du noch nie bei uns zu Gast! Wir machen Zahlen lebendig, und zwar mit jeder Menge Witz, scharfsinnigen Beobachtungen und dem Blick für das, was wirklich zählt. Also schnall dich an – hier kommen nicht nur Zahlen, sondern auch die fetten Insights, die deinen Geldbeutel füllen.
+      Hör rein, lach mit uns und werde finanziell schlauer – es gibt kein langweiliges Gedöns, nur das, was du wirklich wissen musst!</p>
+  </div>
+
+  <div id="podcast" class="section">
+    <div class="podcast-cover"></div>
+    <div class="podcast-description">
+      <p>Willkommen bei unserem Podcast! Jede Woche spannende Gespräche rund um Technologie, Kultur und Geschichten aus aller Welt. Höre rein und begleite uns!</p>
+    </div>
+
+    <div class="audio-player">
+      <audio controls>
+        <source src="demo-episode.mp3" type="audio/mpeg">
+        Dein Browser unterstützt das Audio-Element nicht.
+      </audio>
+    </div>
+
+    <div class="episode-list">
+      <h2>Folgen</h2>
+
+      <div class="episode">
+        <div class="episode-info">
+          <div class="episode-title">#1 – Der Start in die Podcast-Welt</div>
+          <div class="episode-desc">Unsere erste Folge: Warum wir Podcasts lieben und was euch erwartet.</div>
+        </div>
+        <button class="play-button">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+        </button>
+      </div>
+
+      <div class="episode">
+        <div class="episode-info">
+          <div class="episode-title">#2 – Trends in der Technologie 2025</div>
+          <div class="episode-desc">Über KI, neue Gadgets und Lieblings-Apps.</div>
+        </div>
+        <button class="play-button">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+        </button>
+      </div>
+
+      <div class="episode">
+        <div class="episode-info">
+          <div class="episode-title">#3 – Kultur und Geschichten aus aller Welt</div>
+          <div class="episode-desc">Gespräche mit Gästen aus verschiedenen Kulturen.</div>
+        </div>
+        <button class="play-button">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="spotify-embed">
+      <iframe class="spotify-iframe" src="https://open.spotify.com/embed/episode/7gXPzwg0SwG1W1Rz7xNZKd?utm_source=generator" allow="encrypted-media"></iframe>
+    </div>
+
+    <div class="listen-buttons">
+      <a href="#">Jetzt auf YouTube anhören</a>
+      <a href="#">Jetzt Auf Spotify anhören</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  &copy; 2025 Dein Podcast. Alle Rechte vorbehalten.
+</footer>
+
+<script>
+  function toggleTheme() {
+    document.body.classList.toggle('light');
+  }
+
+  // Aktiver Menüpunkt beim Scrollen
+  const sections = document.querySelectorAll('main .section');
+  const navLinks = document.querySelectorAll('.navigation a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 150;
+      if (pageYOffset >= sectionTop) {
+        current = section.getAttribute('id');
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) {
+        link.classList.add('active');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
